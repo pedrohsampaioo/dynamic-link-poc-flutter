@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../shared/cubits/dynamic_link_cubit.dart';
 
-class HomePage extends StatefulWidget {
+import '../../shared/cubits/dynamic_link_cubit.dart';
+
+class SplashPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SplashPageState extends State<SplashPage> {
   final dynamicLinkCubit = Modular.get<DynamicLinkCubit>();
   @override
   void initState() {
@@ -19,8 +20,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Text('Home'),
+      body: SafeArea(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }
