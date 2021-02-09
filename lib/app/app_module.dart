@@ -1,11 +1,27 @@
-import 'package:dynamic_link_poc/app/app_widget.dart';
-import 'package:dynamic_link_poc/app/home/home_module.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'app_widget.dart';
+import 'home/home_module.dart';
+import 'shared/cubits/dynamic_link_cubit.dart';
+import 'shared/service/dynamic_link_service/dynamic_link_service.dart';
+
 class AppModule extends MainModule {
   @override
-  List<Bind> get binds => [];
+  List<Bind> get binds => [
+        Bind((i) => FirebaseDynamicLinks.instance),
+        Bind(
+          (i) => DynamicLinkService(
+            firebaseDynamicLinks: i.get<FirebaseDynamicLinks>(),
+          ),
+        ),
+        Bind(
+          (i) => DynamicLinkCubit(
+            dynamicLinkService: i.get<DynamicLinkService>(),
+          ),
+        ),
+      ];
 
   @override
   Widget get bootstrap => AppWidget();
