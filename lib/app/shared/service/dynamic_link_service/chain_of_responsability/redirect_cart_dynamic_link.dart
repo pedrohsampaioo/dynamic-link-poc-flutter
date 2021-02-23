@@ -1,7 +1,7 @@
-import 'package:dynamic_link_poc/app/shared/args/cart_args.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../args/cart_args.dart';
 import 'dynamic_link_chain_of_responsability.dart';
 
 class RedirectCardDynamicLink extends DynamicLinkChainOfResponsability {

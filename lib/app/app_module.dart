@@ -7,11 +7,13 @@ import 'features/cart/cart_module.dart';
 import 'features/home/home_module.dart';
 import 'features/splash/splash_module.dart';
 import 'shared/cubits/dynamic_link_cubit.dart';
+import 'shared/navigator_observer/navigator_history_observer.dart';
 import 'shared/service/dynamic_link_service/dynamic_link_service.dart';
 
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => NavigatorHistoryObserver()),
         Bind((i) => FirebaseDynamicLinks.instance),
         Bind(
           (i) => DynamicLinkService(

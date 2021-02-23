@@ -1,5 +1,6 @@
-import 'cart_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'cart_page.dart';
 
 class CartModule extends ChildModule {
   @override
