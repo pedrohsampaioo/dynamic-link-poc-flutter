@@ -1,3 +1,4 @@
+import 'package:dynamic_link_poc/app/shared/args/cart_args.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -17,18 +18,11 @@ class RedirectCartDynamicLinkStrategy extends DynamicLinkStrategy {
 
   @override
   VoidCallback handlerOnBackground() {
-    final navigatorHistory = navigatorHistoryObserver.historyWithNamedRoutes;
-    if (navigatorHistory.contains('/account/validate-email')) {
-      return () => Modular.to.pushNamedAndRemoveUntil(
-            '/account/user-info-sync',
-            ModalRoute.withName('/account/user-info-sync'),
-          );
-    }
-    return null;
+    return () => Modular.to.pushNamed('/cart', arguments: CartArgs(id: 5));
   }
 
   @override
   VoidCallback handlerOnOpenApp() {
-    return null;
+    return () => Modular.to.pushNamed('/cart', arguments: CartArgs(id: 5));
   }
 }
