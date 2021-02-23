@@ -17,22 +17,11 @@ class RedirectHomeDynamicLinkStrategy extends DynamicLinkStrategy {
 
   @override
   VoidCallback handlerOnBackground() {
-    final navigatorHistory = navigatorHistoryObserver.historyWithNamedRoutes;
-    final canBackToAccessPage = navigatorHistory.every(
-      (routeName) =>
-          routeName == '/account/access' ||
-          routeName == '/account/password-recover' ||
-          routeName ==
-              '/account/password-recover/password-recover-email-sent-page',
-    );
-    if (canBackToAccessPage) {
-      return () => Modular.to.popUntil(ModalRoute.withName('/account/access'));
-    }
-    return null;
+    return () => Modular.to.pushNamed('/home');
   }
 
   @override
   VoidCallback handlerOnOpenApp() {
-    return null;
+    return () => Modular.to.pushNamed('/home');
   }
 }
