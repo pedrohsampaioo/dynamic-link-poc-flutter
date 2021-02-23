@@ -17,14 +17,11 @@ class AppModule extends MainModule {
         Bind((i) => FirebaseDynamicLinks.instance),
         Bind(
           (i) => DynamicLinkService(
-            firebaseDynamicLinks: i.get<FirebaseDynamicLinks>(),
+            firebaseDynamicLinks: i(),
+            navigatorHistoryObserver: i(),
           ),
         ),
-        Bind(
-          (i) => DynamicLinkCubit(
-            dynamicLinkService: i.get<DynamicLinkService>(),
-          ),
-        ),
+        Bind((i) => DynamicLinkCubit(dynamicLinkService: i())),
       ];
 
   @override

@@ -24,13 +24,15 @@ class _$DynamicLinkStateTearOff {
   }
 
 // ignore: unused_element
-  DynamicLinkStateLoadSuccess loadSuccess() {
-    return const DynamicLinkStateLoadSuccess();
+  DynamicLinkStateLoadRedirect redirect(void Function() redirectCallback) {
+    return DynamicLinkStateLoadRedirect(
+      redirectCallback,
+    );
   }
 
 // ignore: unused_element
-  DynamicLinkStateLoadFailure loadFailure() {
-    return const DynamicLinkStateLoadFailure();
+  DynamicLinkStateNotRedirect notRedirect() {
+    return const DynamicLinkStateNotRedirect();
   }
 }
 
@@ -44,30 +46,30 @@ mixin _$DynamicLinkState {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult loadInProgress(),
-    @required TResult loadSuccess(),
-    @required TResult loadFailure(),
+    @required TResult redirect(void Function() redirectCallback),
+    @required TResult notRedirect(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult loadInProgress(),
-    TResult loadSuccess(),
-    TResult loadFailure(),
+    TResult redirect(void Function() redirectCallback),
+    TResult notRedirect(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(DynamicLinkStateStarted value),
     @required TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    @required TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    @required TResult loadFailure(DynamicLinkStateLoadFailure value),
+    @required TResult redirect(DynamicLinkStateLoadRedirect value),
+    @required TResult notRedirect(DynamicLinkStateNotRedirect value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(DynamicLinkStateStarted value),
     TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    TResult loadFailure(DynamicLinkStateLoadFailure value),
+    TResult redirect(DynamicLinkStateLoadRedirect value),
+    TResult notRedirect(DynamicLinkStateNotRedirect value),
     @required TResult orElse(),
   });
 }
@@ -130,13 +132,13 @@ class _$DynamicLinkStateStarted implements DynamicLinkStateStarted {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult loadInProgress(),
-    @required TResult loadSuccess(),
-    @required TResult loadFailure(),
+    @required TResult redirect(void Function() redirectCallback),
+    @required TResult notRedirect(),
   }) {
     assert(started != null);
     assert(loadInProgress != null);
-    assert(loadSuccess != null);
-    assert(loadFailure != null);
+    assert(redirect != null);
+    assert(notRedirect != null);
     return started();
   }
 
@@ -145,8 +147,8 @@ class _$DynamicLinkStateStarted implements DynamicLinkStateStarted {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult loadInProgress(),
-    TResult loadSuccess(),
-    TResult loadFailure(),
+    TResult redirect(void Function() redirectCallback),
+    TResult notRedirect(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -161,13 +163,13 @@ class _$DynamicLinkStateStarted implements DynamicLinkStateStarted {
   TResult map<TResult extends Object>({
     @required TResult started(DynamicLinkStateStarted value),
     @required TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    @required TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    @required TResult loadFailure(DynamicLinkStateLoadFailure value),
+    @required TResult redirect(DynamicLinkStateLoadRedirect value),
+    @required TResult notRedirect(DynamicLinkStateNotRedirect value),
   }) {
     assert(started != null);
     assert(loadInProgress != null);
-    assert(loadSuccess != null);
-    assert(loadFailure != null);
+    assert(redirect != null);
+    assert(notRedirect != null);
     return started(this);
   }
 
@@ -176,8 +178,8 @@ class _$DynamicLinkStateStarted implements DynamicLinkStateStarted {
   TResult maybeMap<TResult extends Object>({
     TResult started(DynamicLinkStateStarted value),
     TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    TResult loadFailure(DynamicLinkStateLoadFailure value),
+    TResult redirect(DynamicLinkStateLoadRedirect value),
+    TResult notRedirect(DynamicLinkStateNotRedirect value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -237,13 +239,13 @@ class _$DynamicLinkStateLoadInProgress
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult loadInProgress(),
-    @required TResult loadSuccess(),
-    @required TResult loadFailure(),
+    @required TResult redirect(void Function() redirectCallback),
+    @required TResult notRedirect(),
   }) {
     assert(started != null);
     assert(loadInProgress != null);
-    assert(loadSuccess != null);
-    assert(loadFailure != null);
+    assert(redirect != null);
+    assert(notRedirect != null);
     return loadInProgress();
   }
 
@@ -252,8 +254,8 @@ class _$DynamicLinkStateLoadInProgress
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult loadInProgress(),
-    TResult loadSuccess(),
-    TResult loadFailure(),
+    TResult redirect(void Function() redirectCallback),
+    TResult notRedirect(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -268,13 +270,13 @@ class _$DynamicLinkStateLoadInProgress
   TResult map<TResult extends Object>({
     @required TResult started(DynamicLinkStateStarted value),
     @required TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    @required TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    @required TResult loadFailure(DynamicLinkStateLoadFailure value),
+    @required TResult redirect(DynamicLinkStateLoadRedirect value),
+    @required TResult notRedirect(DynamicLinkStateNotRedirect value),
   }) {
     assert(started != null);
     assert(loadInProgress != null);
-    assert(loadSuccess != null);
-    assert(loadFailure != null);
+    assert(redirect != null);
+    assert(notRedirect != null);
     return loadInProgress(this);
   }
 
@@ -283,8 +285,8 @@ class _$DynamicLinkStateLoadInProgress
   TResult maybeMap<TResult extends Object>({
     TResult started(DynamicLinkStateStarted value),
     TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    TResult loadFailure(DynamicLinkStateLoadFailure value),
+    TResult redirect(DynamicLinkStateLoadRedirect value),
+    TResult notRedirect(DynamicLinkStateNotRedirect value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -301,38 +303,178 @@ abstract class DynamicLinkStateLoadInProgress implements DynamicLinkState {
 }
 
 /// @nodoc
-abstract class $DynamicLinkStateLoadSuccessCopyWith<$Res> {
-  factory $DynamicLinkStateLoadSuccessCopyWith(
-          DynamicLinkStateLoadSuccess value,
-          $Res Function(DynamicLinkStateLoadSuccess) then) =
-      _$DynamicLinkStateLoadSuccessCopyWithImpl<$Res>;
+abstract class $DynamicLinkStateLoadRedirectCopyWith<$Res> {
+  factory $DynamicLinkStateLoadRedirectCopyWith(
+          DynamicLinkStateLoadRedirect value,
+          $Res Function(DynamicLinkStateLoadRedirect) then) =
+      _$DynamicLinkStateLoadRedirectCopyWithImpl<$Res>;
+  $Res call({void Function() redirectCallback});
 }
 
 /// @nodoc
-class _$DynamicLinkStateLoadSuccessCopyWithImpl<$Res>
+class _$DynamicLinkStateLoadRedirectCopyWithImpl<$Res>
     extends _$DynamicLinkStateCopyWithImpl<$Res>
-    implements $DynamicLinkStateLoadSuccessCopyWith<$Res> {
-  _$DynamicLinkStateLoadSuccessCopyWithImpl(DynamicLinkStateLoadSuccess _value,
-      $Res Function(DynamicLinkStateLoadSuccess) _then)
-      : super(_value, (v) => _then(v as DynamicLinkStateLoadSuccess));
+    implements $DynamicLinkStateLoadRedirectCopyWith<$Res> {
+  _$DynamicLinkStateLoadRedirectCopyWithImpl(
+      DynamicLinkStateLoadRedirect _value,
+      $Res Function(DynamicLinkStateLoadRedirect) _then)
+      : super(_value, (v) => _then(v as DynamicLinkStateLoadRedirect));
 
   @override
-  DynamicLinkStateLoadSuccess get _value =>
-      super._value as DynamicLinkStateLoadSuccess;
+  DynamicLinkStateLoadRedirect get _value =>
+      super._value as DynamicLinkStateLoadRedirect;
+
+  @override
+  $Res call({
+    Object redirectCallback = freezed,
+  }) {
+    return _then(DynamicLinkStateLoadRedirect(
+      redirectCallback == freezed
+          ? _value.redirectCallback
+          : redirectCallback as void Function(),
+    ));
+  }
 }
 
 /// @nodoc
-class _$DynamicLinkStateLoadSuccess implements DynamicLinkStateLoadSuccess {
-  const _$DynamicLinkStateLoadSuccess();
+class _$DynamicLinkStateLoadRedirect implements DynamicLinkStateLoadRedirect {
+  const _$DynamicLinkStateLoadRedirect(this.redirectCallback)
+      : assert(redirectCallback != null);
+
+  @override
+  final void Function() redirectCallback;
 
   @override
   String toString() {
-    return 'DynamicLinkState.loadSuccess()';
+    return 'DynamicLinkState.redirect(redirectCallback: $redirectCallback)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DynamicLinkStateLoadSuccess);
+    return identical(this, other) ||
+        (other is DynamicLinkStateLoadRedirect &&
+            (identical(other.redirectCallback, redirectCallback) ||
+                const DeepCollectionEquality()
+                    .equals(other.redirectCallback, redirectCallback)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(redirectCallback);
+
+  @JsonKey(ignore: true)
+  @override
+  $DynamicLinkStateLoadRedirectCopyWith<DynamicLinkStateLoadRedirect>
+      get copyWith => _$DynamicLinkStateLoadRedirectCopyWithImpl<
+          DynamicLinkStateLoadRedirect>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult loadInProgress(),
+    @required TResult redirect(void Function() redirectCallback),
+    @required TResult notRedirect(),
+  }) {
+    assert(started != null);
+    assert(loadInProgress != null);
+    assert(redirect != null);
+    assert(notRedirect != null);
+    return redirect(redirectCallback);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult loadInProgress(),
+    TResult redirect(void Function() redirectCallback),
+    TResult notRedirect(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (redirect != null) {
+      return redirect(redirectCallback);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(DynamicLinkStateStarted value),
+    @required TResult loadInProgress(DynamicLinkStateLoadInProgress value),
+    @required TResult redirect(DynamicLinkStateLoadRedirect value),
+    @required TResult notRedirect(DynamicLinkStateNotRedirect value),
+  }) {
+    assert(started != null);
+    assert(loadInProgress != null);
+    assert(redirect != null);
+    assert(notRedirect != null);
+    return redirect(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(DynamicLinkStateStarted value),
+    TResult loadInProgress(DynamicLinkStateLoadInProgress value),
+    TResult redirect(DynamicLinkStateLoadRedirect value),
+    TResult notRedirect(DynamicLinkStateNotRedirect value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (redirect != null) {
+      return redirect(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DynamicLinkStateLoadRedirect implements DynamicLinkState {
+  const factory DynamicLinkStateLoadRedirect(void Function() redirectCallback) =
+      _$DynamicLinkStateLoadRedirect;
+
+  void Function() get redirectCallback;
+  @JsonKey(ignore: true)
+  $DynamicLinkStateLoadRedirectCopyWith<DynamicLinkStateLoadRedirect>
+      get copyWith;
+}
+
+/// @nodoc
+abstract class $DynamicLinkStateNotRedirectCopyWith<$Res> {
+  factory $DynamicLinkStateNotRedirectCopyWith(
+          DynamicLinkStateNotRedirect value,
+          $Res Function(DynamicLinkStateNotRedirect) then) =
+      _$DynamicLinkStateNotRedirectCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$DynamicLinkStateNotRedirectCopyWithImpl<$Res>
+    extends _$DynamicLinkStateCopyWithImpl<$Res>
+    implements $DynamicLinkStateNotRedirectCopyWith<$Res> {
+  _$DynamicLinkStateNotRedirectCopyWithImpl(DynamicLinkStateNotRedirect _value,
+      $Res Function(DynamicLinkStateNotRedirect) _then)
+      : super(_value, (v) => _then(v as DynamicLinkStateNotRedirect));
+
+  @override
+  DynamicLinkStateNotRedirect get _value =>
+      super._value as DynamicLinkStateNotRedirect;
+}
+
+/// @nodoc
+class _$DynamicLinkStateNotRedirect implements DynamicLinkStateNotRedirect {
+  const _$DynamicLinkStateNotRedirect();
+
+  @override
+  String toString() {
+    return 'DynamicLinkState.notRedirect()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is DynamicLinkStateNotRedirect);
   }
 
   @override
@@ -343,14 +485,14 @@ class _$DynamicLinkStateLoadSuccess implements DynamicLinkStateLoadSuccess {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult loadInProgress(),
-    @required TResult loadSuccess(),
-    @required TResult loadFailure(),
+    @required TResult redirect(void Function() redirectCallback),
+    @required TResult notRedirect(),
   }) {
     assert(started != null);
     assert(loadInProgress != null);
-    assert(loadSuccess != null);
-    assert(loadFailure != null);
-    return loadSuccess();
+    assert(redirect != null);
+    assert(notRedirect != null);
+    return notRedirect();
   }
 
   @override
@@ -358,13 +500,13 @@ class _$DynamicLinkStateLoadSuccess implements DynamicLinkStateLoadSuccess {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult loadInProgress(),
-    TResult loadSuccess(),
-    TResult loadFailure(),
+    TResult redirect(void Function() redirectCallback),
+    TResult notRedirect(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (loadSuccess != null) {
-      return loadSuccess();
+    if (notRedirect != null) {
+      return notRedirect();
     }
     return orElse();
   }
@@ -374,14 +516,14 @@ class _$DynamicLinkStateLoadSuccess implements DynamicLinkStateLoadSuccess {
   TResult map<TResult extends Object>({
     @required TResult started(DynamicLinkStateStarted value),
     @required TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    @required TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    @required TResult loadFailure(DynamicLinkStateLoadFailure value),
+    @required TResult redirect(DynamicLinkStateLoadRedirect value),
+    @required TResult notRedirect(DynamicLinkStateNotRedirect value),
   }) {
     assert(started != null);
     assert(loadInProgress != null);
-    assert(loadSuccess != null);
-    assert(loadFailure != null);
-    return loadSuccess(this);
+    assert(redirect != null);
+    assert(notRedirect != null);
+    return notRedirect(this);
   }
 
   @override
@@ -389,123 +531,18 @@ class _$DynamicLinkStateLoadSuccess implements DynamicLinkStateLoadSuccess {
   TResult maybeMap<TResult extends Object>({
     TResult started(DynamicLinkStateStarted value),
     TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    TResult loadFailure(DynamicLinkStateLoadFailure value),
+    TResult redirect(DynamicLinkStateLoadRedirect value),
+    TResult notRedirect(DynamicLinkStateNotRedirect value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (loadSuccess != null) {
-      return loadSuccess(this);
+    if (notRedirect != null) {
+      return notRedirect(this);
     }
     return orElse();
   }
 }
 
-abstract class DynamicLinkStateLoadSuccess implements DynamicLinkState {
-  const factory DynamicLinkStateLoadSuccess() = _$DynamicLinkStateLoadSuccess;
-}
-
-/// @nodoc
-abstract class $DynamicLinkStateLoadFailureCopyWith<$Res> {
-  factory $DynamicLinkStateLoadFailureCopyWith(
-          DynamicLinkStateLoadFailure value,
-          $Res Function(DynamicLinkStateLoadFailure) then) =
-      _$DynamicLinkStateLoadFailureCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$DynamicLinkStateLoadFailureCopyWithImpl<$Res>
-    extends _$DynamicLinkStateCopyWithImpl<$Res>
-    implements $DynamicLinkStateLoadFailureCopyWith<$Res> {
-  _$DynamicLinkStateLoadFailureCopyWithImpl(DynamicLinkStateLoadFailure _value,
-      $Res Function(DynamicLinkStateLoadFailure) _then)
-      : super(_value, (v) => _then(v as DynamicLinkStateLoadFailure));
-
-  @override
-  DynamicLinkStateLoadFailure get _value =>
-      super._value as DynamicLinkStateLoadFailure;
-}
-
-/// @nodoc
-class _$DynamicLinkStateLoadFailure implements DynamicLinkStateLoadFailure {
-  const _$DynamicLinkStateLoadFailure();
-
-  @override
-  String toString() {
-    return 'DynamicLinkState.loadFailure()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DynamicLinkStateLoadFailure);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult loadInProgress(),
-    @required TResult loadSuccess(),
-    @required TResult loadFailure(),
-  }) {
-    assert(started != null);
-    assert(loadInProgress != null);
-    assert(loadSuccess != null);
-    assert(loadFailure != null);
-    return loadFailure();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult loadInProgress(),
-    TResult loadSuccess(),
-    TResult loadFailure(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loadFailure != null) {
-      return loadFailure();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(DynamicLinkStateStarted value),
-    @required TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    @required TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    @required TResult loadFailure(DynamicLinkStateLoadFailure value),
-  }) {
-    assert(started != null);
-    assert(loadInProgress != null);
-    assert(loadSuccess != null);
-    assert(loadFailure != null);
-    return loadFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(DynamicLinkStateStarted value),
-    TResult loadInProgress(DynamicLinkStateLoadInProgress value),
-    TResult loadSuccess(DynamicLinkStateLoadSuccess value),
-    TResult loadFailure(DynamicLinkStateLoadFailure value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loadFailure != null) {
-      return loadFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DynamicLinkStateLoadFailure implements DynamicLinkState {
-  const factory DynamicLinkStateLoadFailure() = _$DynamicLinkStateLoadFailure;
+abstract class DynamicLinkStateNotRedirect implements DynamicLinkState {
+  const factory DynamicLinkStateNotRedirect() = _$DynamicLinkStateNotRedirect;
 }
