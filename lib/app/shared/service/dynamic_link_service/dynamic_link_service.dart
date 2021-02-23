@@ -1,48 +1,69 @@
+import 'package:dartz/dartz.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../navigator_observer/navigator_history_observer.dart';
+import 'strategies/dynamic_link_strategy.dart';
+
 class DynamicLinkService {
   final FirebaseDynamicLinks _firebaseDynamicLinks;
+  final NavigatorHistoryObserver _navigatorHistoryObserver;
 
   const DynamicLinkService({
     @required FirebaseDynamicLinks firebaseDynamicLinks,
+    @required NavigatorHistoryObserver navigatorHistoryObserver,
   })  : assert(firebaseDynamicLinks != null),
-        _firebaseDynamicLinks = firebaseDynamicLinks;
+        assert(navigatorHistoryObserver != null),
+        _firebaseDynamicLinks = firebaseDynamicLinks,
+        _navigatorHistoryObserver = navigatorHistoryObserver;
 
-  Future<void> initDynamicLinks(
-    VoidCallback Function({@required String path}) redirectRule,
-  ) async {
-    _initBackgroundDynamicLinks(redirectRule: redirectRule);
-    await _initRedirectOnOpenAppDynamicLinks(redirectRule: redirectRule);
+  Future<Option<VoidCallback>> initOnOpenAppDynamicLinks() async {
+    final initialRedirect = await _initRedirectOnOpenAppDynamicLinks();
+    return optionOf(initialRedirect);
   }
 
-  void _initBackgroundDynamicLinks({
-    @required VoidCallback Function({@required String path}) redirectRule,
-  }) {
+  void initBackgroundDynamicLinks() {
     _firebaseDynamicLinks.onLink(
       onSuccess: (pendingDynamicLinkData) async {
         final deepLink = pendingDynamicLinkData?.link;
-        if (deepLink != null && redirectRule != null) {
-          final path = deepLink.path;
-          final redirectCall = redirectRule(path: path);
-          redirectCall();
+        final dynamicLinkStrategy = await _handleDeepLink(deepLink);
+        final redirectCallback = dynamicLinkStrategy?.handlerOnBackground();
+        if (redirectCallback != null) {
+          redirectCallback();
         }
       },
-      onError: (onLinkErrorException) async {
-
-      },
+      onError: (onLinkErrorException) async {},
     );
   }
 
-  Future<void> _initRedirectOnOpenAppDynamicLinks({
-    @required VoidCallback Function({@required String path}) redirectRule,
-  }) async {
-    final pendingDynamicLinkData = await _firebaseDynamicLinks.getInitialLink();
-    final deepLink = pendingDynamicLinkData?.link;
-    if (deepLink != null && redirectRule != null) {
-      final path = deepLink.path;
-      final redirectCall = redirectRule(path: path);
-      redirectCall();
+  Future<VoidCallback> _initRedirectOnOpenAppDynamicLinks() async {
+    final pendingDynamicLinkData =
+        await _firebaseDynamicLinks?.getInitialLink();
+    if (pendingDynamicLinkData == null) {
+      return null;
     }
+    final deepLink = pendingDynamicLinkData?.link;
+    final dynamicLinkStrategy = await _handleDeepLink(deepLink);
+    return dynamicLinkStrategy?.handlerOnOpenApp();
+  }
+
+  Future<DynamicLinkStrategy> _handleDeepLink(Uri deepLink) async {
+    if (deepLink != null) {
+      final path = deepLink?.path;
+      final queryParameters = deepLink?.queryParameters;
+      final redirectInApp = queryParameters['redirectInApp'];
+      if (redirectInApp != null) {
+        final factoryDynamicLinkStrategy = selectDynamicLinkStrategy(
+          redirectInApp: redirectInApp,
+        );
+        final dynamicLinkStrategy = factoryDynamicLinkStrategy(
+          _navigatorHistoryObserver,
+          path,
+          queryParameters,
+        );
+        return dynamicLinkStrategy;
+      }
+    }
+    return null;
   }
 }
